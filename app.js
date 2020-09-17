@@ -54,17 +54,29 @@ function startTeam(){
     name: "New",
     message: "Do you want to add a new team member?",
     choices: ["Yes, I would like to add a new member!", "No, my team's awesome as is!"]
-},
-{
+}
+]).then(function(answers){
+    if(answers.New === "Yes, I would like to add a new member!"){
+        chooseRole();
+    }
+    else {
+        render(Team);
+    }
+})
+};
+
+function chooseRole(){
+    return inquirer.prompt([
+    {
     type: "list",
     name: "Title",
     message: "What is the member's job title?",
-    choices: ["Engineer", "Intern"]
+    choices: ["Engineer", "Intern", "I'm done creating my team!"]
 }
 ])
 .then(function(answers){
     if(answers.Title === "Engineer"){
-        engineerCreator()
+        engineerCreator();
     }
     else if(answers.Title === "Intern") {
         internCreator();
@@ -72,7 +84,8 @@ function startTeam(){
     else {
         render(Team);
     }
-})}; 
+})
+}; 
 
 
 
@@ -141,7 +154,12 @@ function internCreator(){
 
 managerCreator();
 
-
+async function init() {
+    const teamHTML = render(Team);
+    fs.writeFile(outputPath, teamHTML, "team.html", html);
+    
+};
+ init();
 
 
 // After the user has input all employees desired, call the `render` function (required
