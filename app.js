@@ -16,7 +16,7 @@ const render = require("./lib/htmlRenderer");
 let Team = []
 
 
-function manager() {
+function managerCreator() {
     return inquirer.prompt([
     {
         type: "input",
@@ -38,28 +38,45 @@ function manager() {
         name: "Office",
         message: "Please enter your office number:"
     }
-]
-)}
+])
+.then(function(answers){
+    const manager = new Manager(answers.name, (answers.id), answers.email, (answers.officeNumber));
+    Team.push(manager);
+    startTeam();
+})
+};
+
 
 function startTeam(){
     return inquirer.prompt([
     {
     type: "list",
     name: "New",
-    message= "Do you want to add a new team member?",
+    message: "Do you want to add a new team member?",
     choices: ["Yes, I would like to add a new member!", "No, my team's awesome as is!"]
 },
-
 {
     type: "list",
     name: "Title",
     message: "What is the member's job title?",
     choices: ["Engineer", "Intern"]
 }
-]
-)}; 
+])
+.then(function(answers){
+    if(answers.Title === "Engineer"){
+        engineerCreator()
+    }
+    else if(answers.Title === "Intern") {
+        internCreator();
+    }
+    else {
+        render(Team);
+    }
+})}; 
 
-function engineer(){
+
+
+function engineerCreator(){
     return inquirer.prompt([
  {
     type: "input",
@@ -81,10 +98,17 @@ function engineer(){
     name: "GitHub",
     message: "Enter the engineer's GitHub username:"
 }
-]
-)};
+])
+.then(function(answers){
+    const engineer = new Engineer(answers.name, (answers.id), answers.email, (answers.github));
+    Team.push(engineer);
+    startTeam();
+})
+};
 
-function intern(){
+
+
+function internCreator(){
     return inquirer.prompt([
 {
     type: "input",
@@ -106,10 +130,16 @@ function intern(){
     name: "School",
     message: "Enter the intern's school:"
 }
-]
-)};
+])
+.then(function(answers){
+    const intern = new Intern(answers.name, (answers.id), answers.email, (answers.school));
+    Team.push(intern);
+    startTeam();
+})
+};
 
 
+managerCreator();
 
 
 
