@@ -24,8 +24,8 @@ function managerCreator() {
         message: "Hello, what is your name?"
     },
     {
-        type: "input",
-        name: "ID",
+        type: "number",
+        name: "id",
         message: "Please enter your ID number:"
     },
     {
@@ -34,13 +34,13 @@ function managerCreator() {
         message: "Please enter your email:"
     },
     {
-        type: "input",
+        type: "number",
         name: "Office",
         message: "Please enter your office number:"
     }
 ])
 .then(function(answers){
-    const manager = new Manager(answers.name, (answers.id), answers.email, (answers.officeNumber));
+    const manager = new Manager(answers.Name, answers.id, answers.Email, answers.Office);
     Team.push(manager);
     startTeam();
 })
@@ -61,7 +61,7 @@ function startTeam(){
     }
     else {
         let renderedHTML = render(Team)
-            fs.writeFile("./output/team.html", renderedHTML, function(){
+            fs.writeFile("./Output/team.html", renderedHTML, function(){
                     console.log("Successful team creation")
                 });
         
@@ -101,8 +101,8 @@ function engineerCreator(){
     message: "Enter the engineer's name:",
 },
 {
-    type: "input",
-    name: "ID",
+    type: "number",
+    name: "id",
     message: "Enter the engineer's ID number:"
 },
 {
@@ -117,7 +117,7 @@ function engineerCreator(){
 }
 ])
 .then(function(answers){
-    const engineer = new Engineer(answers.name, (answers.id), answers.email, (answers.github));
+    const engineer = new Engineer(answers.Name, answers.id, answers.Email, answers.GitHub);
     Team.push(engineer);
     startTeam();
 })
@@ -133,8 +133,8 @@ function internCreator(){
     message: "Enter the intern's name:"
 },
 {
-    type: "input",
-    name: "ID",
+    type: "number",
+    name: "id",
     message: "Enter the intern's ID:"
 },
 {
@@ -149,7 +149,7 @@ function internCreator(){
 }
 ])
 .then(function(answers){
-    const intern = new Intern(answers.name, (answers.id), answers.email, (answers.school));
+    const intern = new Intern(answers.Name, answers.id, answers.Email, answers.School);
     Team.push(intern);
     startTeam();
 })
