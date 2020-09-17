@@ -15,63 +15,99 @@ const render = require("./lib/htmlRenderer");
 // and to create objects for each team member (using the correct classes as blueprints!)
 let Team = []
 
-const manager = [
+
+function manager() {
+    return inquirer.prompt([
     {
         type: "input",
-        message: "Hello, what is your name?",
-        name: "name"
+        name: "Name",
+        message: "Hello, what is your name?"
     },
     {
         type: "input",
-        message: "Please enter your ID number:",
-        name: "ID"
+        name: "ID",
+        message: "Please enter your ID number:"
     },
     {
         type: "input",
-        message: "Please enter your email:",
-        name: "email"
+        name: "Email",
+        message: "Please enter your email:"
     },
     {
         type: "input",
-        message: "Please enter your office number:",
-        name: "office"
+        name: "Office",
+        message: "Please enter your office number:"
     }
 ]
+)}
 
-const startTeam = {
+function startTeam(){
+    return inquirer.prompt([
+    {
     type: "list",
-    message= "Do you want to add a new team member?",
     name: "New",
+    message= "Do you want to add a new team member?",
     choices: ["Yes, I would like to add a new member!", "No, my team's awesome as is!"]
-};
+},
 
-const jobTitle = {
+{
     type: "list",
-    message: "What is the member's job title?",
     name: "Title",
+    message: "What is the member's job title?",
     choices: ["Engineer", "Intern"]
-};
-
-const memberName = {
-    type: "input",
-    message: "Enter the team member's name:",
-    name: "Name"
-};
-
-const id = {
-    type: "input",
-    message: "Enter the member's ID number:",
-    name: "ID"
 }
+]
+)}; 
 
-const email = {
+function engineer(){
+    return inquirer.prompt([
+ {
     type: "input",
-    message: "Enter the member's email address:",
-    name: "Email"
-};
+    name: "Name",
+    message: "Enter the engineer's name:",
+},
+{
+    type: "input",
+    name: "ID",
+    message: "Enter the engineer's ID number:"
+},
+{
+    type: "input",
+    name: "Email",
+    message: "Enter the engineer's email address:"
+},
+{
+    type:"input",
+    name: "GitHub",
+    message: "Enter the engineer's GitHub username:"
+}
+]
+)};
 
-const
-
+function intern(){
+    return inquirer.prompt([
+{
+    type: "input",
+    name: "Name",
+    message: "Enter the intern's name:"
+},
+{
+    type: "input",
+    name: "ID",
+    message: "Enter the intern's ID:"
+},
+{
+    type: "input",
+    name: "Email",
+    message: "Enter the intern's email address:"
+},
+{
+    type: "input",
+    name: "School",
+    message: "Enter the intern's school:"
+}
+]
+)};
 
 
 
