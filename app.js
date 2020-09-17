@@ -60,7 +60,11 @@ function startTeam(){
         chooseRole();
     }
     else {
-        render(Team);
+        let renderedHTML = render(Team)
+            fs.writeFile("./output/team.html", renderedHTML, function(){
+                    console.log("Successful team creation")
+                });
+        
     }
 })
 };
@@ -154,12 +158,7 @@ function internCreator(){
 
 managerCreator();
 
-async function init() {
-    const teamHTML = render(Team);
-    fs.writeFile(outputPath, teamHTML, "team.html", html);
-    
-};
- init();
+
 
 
 // After the user has input all employees desired, call the `render` function (required
