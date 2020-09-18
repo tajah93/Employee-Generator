@@ -23,5 +23,5 @@ The user is prompted to input a series of data about their team member before th
 
 ## Demo and Photo Sample ##
 
-[Sample]()
+[Sample](https://github.com/tajah93/Employee-Generator/blob/master/EmployeeGen.png)
 
