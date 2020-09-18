@@ -6,7 +6,7 @@ This application generates employees and their work-related information. The pro
 
 * [Installation](#Installation)
 * [Usage](#Usage)
-* [Demo and Photo Sample](#Demo and Photo Sample)
+* [Demo and Photo Sample](#DemoandPhotoSample)
 
 ## Installation ##
 
